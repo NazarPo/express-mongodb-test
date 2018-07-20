@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-router.post('/:say', (req, res) => {
-    let say = req.params.say;
-    let {first, last} = req.body;
-    let message = `${say} ${first} ${last}!`;
-    res.json({ message });
-});
+const meetups = require('./meetups');
+const guests = require('./guests');
+
+router.use(meetups);
+router.use('/guests', guests);
 
 module.exports = router;
